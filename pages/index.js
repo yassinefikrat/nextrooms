@@ -6,7 +6,7 @@ import RoomThumb from '../components/RoomThumb.js'
 
 const Index = (props) => (
   <Layout>
-    <h1>Batman TV Shows</h1>
+    <h1>Rooms</h1>
     {/*<ul>
       {props.rooms.map((room) => (
         <li key={room.name}>

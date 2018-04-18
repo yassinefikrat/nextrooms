@@ -1,34 +1,30 @@
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme 		from 'material-ui/styles/getMuiTheme'
-import {green100, green500, green700} from 'material-ui/styles/colors'
 import AppBar 			from 'material-ui/AppBar'
-import FlatButton 		from 'material-ui/FlatButton'
+import Toolbar 			from 'material-ui/Toolbar'
+import Typography 		from 'material-ui/Typography'
+import Button 			from 'material-ui/Button'
+import PropTypes 		from 'prop-types'
+import { withStyles } 	from 'material-ui/styles'
+
+
+import TopBar from '../components/TopBar.js'
 
 import Head from 'next/head'
 
 import Header from './Header'
 
-const layoutStyle = {
-  margin: 10,
-  padding: 10,
-  // border: '1px solid #DDD'
-}
-
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: green500,
-    primary2Color: green700,
-    primary3Color: green100,
+const styles = {
+  root: {
+	margin: 10,
+	padding: 10,
   },
-}, {
-  avatar: {
-    borderColor: null,
-  },
-  // userAgent: req.headers['user-agent'],
-});
+};
 
-const Layout = (props) => (
-  	<div style={layoutStyle}>
+const Layout = (props) => {
+
+	const { classes } = props
+
+	return (
+  	<div className={classes.root}>
 
 	  	<Head>
 	  		<title>Fortrooms</title>
@@ -44,18 +40,16 @@ const Layout = (props) => (
 
 	    `}</style>
 
-	    <MuiThemeProvider muiTheme={muiTheme}>
-
-	    	<AppBar
-			    title="Fortrooms"
-			    iconElementRight={<FlatButton label="Settings" />}
-			/>
-
-	    </MuiThemeProvider>
+		<TopBar/>
 	    
 	    {props.children}
 
   	</div>
-)
+	)
+}
 
-export default Layout
+Layout.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Layout)

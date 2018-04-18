@@ -15,7 +15,7 @@ const style = {
   display: 'inline-block',
 };
 
-const RoomThumb = (props) => (
+const CreateRoomThumb = (props) => (
     <MuiThemeProvider>
 
     	<Paper style={style} zDepth={3} rounded={false}>
@@ -33,4 +33,4 @@ const RoomThumb = (props) => (
     </MuiThemeProvider>
 )
 
-export default RoomThumb
+export default CreateRoomThumb

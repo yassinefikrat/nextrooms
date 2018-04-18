@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -7,14 +8,10 @@ const UsersInRoom = (props) => (
 
     <div>
 
-      <p>users</p>
-
       <ul>
         {props.users.map((user) => (
-          <li key={user.name}>
-            <Link as={`/p/${user.name}`} href={`/post?name=${user.name}`}>
-              <a>{user.name}</a>
-            </Link>
+          <li key={user}>
+              <a>{user}</a>
           </li>
         ))}
       </ul>
