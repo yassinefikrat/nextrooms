@@ -1,29 +1,42 @@
-import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import Link from "next/link"
+import fetch from "isomorphic-unfetch"
 
-import Layout from '../components/Layout.js'
-import RoomThumb from '../components/RoomThumb.js'
+import GridList, { GridListTile } from "material-ui/GridList"
 
-const Index = (props) => (
+import Layout from "../components/Layout.js"
+import RoomThumb from "../components/RoomThumb.js"
+import NewRoom from "../components/NewRoom.js"
+
+const styles = theme => ({
+  root: {
+    textAlign: "center",
+    paddingTop: theme.spacing.unit * 5
+  }
+})
+
+const Index = props => (
   <Layout>
     <h1>Rooms</h1>
-    {/*<ul>
-      {props.rooms.map((room) => (
-        <li key={room.name}>
-          <Link as={`/p/${room.name}`} href={`/post?name=${room.name}`}>
-            <a>{room.name}</a>
-          </Link>
-        </li>
+
+    <GridList cellHeight="300">
+      {props.rooms.map(room => (
+        <GridListTile>
+          <RoomThumb key={room.name} room={room} />
+        </GridListTile>
       ))}
-    </ul>*/}
-    {props.rooms.map((room) => (
-      <RoomThumb key={room.name} room={room}></RoomThumb>
-    ))}
+    </GridList>
+
+    {props.rooms.map(room => <RoomThumb key={room.name} room={room} />)}
+
+    <NewRoom
+      games={["Fortnite"]}
+      sizes={["2 players", "3 players", "4 players"]}
+    />
   </Layout>
 )
 
 Index.getInitialProps = async function() {
-  const res = await fetch('http://localhost:3000/rooms/')
+  const res = await fetch("http://localhost:3000/rooms/")
   const data = await res.json()
 
   return {
